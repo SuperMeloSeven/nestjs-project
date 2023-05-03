@@ -5,7 +5,6 @@ import envConfig from '../config/env';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
-import { PostsEntity } from './posts/posts.entity';
 
 @Module({
   imports: [
@@ -18,7 +17,7 @@ import { PostsEntity } from './posts/posts.entity';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql', // 数据库类型
-        entities: [PostsEntity], // 数据表实体，连接数据库时需要注册进来
+        entities: [], // 数据表实体，连接数据库时需要注册进来
         host: configService.get('DB_HOST', '127.0.0.1'), // 主机，默认为localhost
         port: configService.get<number>('DB_PORT', 3306), // 端口号
         username: configService.get('DB_USER', 'root'), // 用户名
